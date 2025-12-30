@@ -6,16 +6,17 @@
 
 Odin 框架支持多种大型语言模型提供商，您可以根据项目需求选择合适的模型。目前支持的主要模型包括：
 
-| 模型类型         | 实现类                | 描述                                 |
-| ------------ | ------------------ | ---------------------------------- |
-| Azure OpenAI | `AzureOpenAIModel` | 微软 Azure OpenAI 服务，提供 OpenAI 的模型接口 |
-| OpenAI       | `OpenAIModel`      | OpenAI 官方 API 接口                   |
-| AWS Bedrock  | `AwsBedrockModel`  | 亚马逊 AWS Bedrock 服务，提供多种基础模型接口     |
-| 豆包 AI        | `DoubaoModel`      | 字节跳动旗下的大语言模型服务                     |
-| DeepSeek     | `DoubaoModel`      | 通过豆包 API 访问的 DeepSeek 模型            |
-| ChatGLM      | `ChatglmModel`     | 清华大学开发的双语对话语言模型                    |
-| RWKV         | `RWKVModel`        | 开源的 RNN-based 大语言模型                |
-| Ollama       | `OllamaModel`      | 本地运行的开源模型运行时                       |
+| Model Type         | Implementation Class | Description                                 |
+| ------------------ | -------------------- | ------------------------------------------- |
+| Azure OpenAI       | `AzureOpenAIModel`   | Microsoft Azure OpenAI service              |
+| OpenAI             | `OpenAIModel`        | Official OpenAI API interface               |
+| AWS Bedrock        | `AwsBedrockModel`    | Amazon AWS Bedrock service                  |
+| Doubao AI          | `DoubaoModel`        | ByteDance's large language model service    |
+| DeepSeek           | `DoubaoModel`        | DeepSeek model via Doubao API               |
+| Tencent Hunyuan    | `HunyuanModel`       | Tencent Cloud Hunyuan LLM service           |
+| ChatGLM            | `ChatglmModel`       | Bilingual dialogue model by Tsinghua        |
+| RWKV               | `RWKVModel`          | Open-source RNN-based LLM                   |
+| Ollama             | `OllamaModel`        | Local open-source model runtime             |
 
 ## 模型配置方法
 

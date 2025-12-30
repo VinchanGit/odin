@@ -13,6 +13,7 @@ Odin 框架支持多种大型语言模型提供商，您可以根据项目需求
 | AWS Bedrock  | `AwsBedrockModel`  | 亚马逊 AWS Bedrock 服务，提供多种基础模型接口     |
 | 豆包 AI        | `DoubaoModel`      | 字节跳动旗下的大语言模型服务                     |
 | DeepSeek     | `DoubaoModel`      | 通过豆包 API 访问的 DeepSeek 模型            |
+| 腾讯混元        | `HunyuanModel`     | 腾讯云混元大语言模型服务                       |
 | ChatGLM      | `ChatglmModel`     | 清华大学开发的双语对话语言模型                    |
 | RWKV         | `RWKVModel`        | 开源的 RNN-based 大语言模型                |
 | Ollama       | `OllamaModel`      | 本地运行的开源模型运行时                       |
@@ -192,6 +193,61 @@ $model = new DoubaoModel(
     new Logger(),
 );
 ```
+
+### 腾讯混元
+
+腾讯混元是腾讯云推出的大语言模型服务，提供兼容 OpenAI API 格式的接口，支持对话生成、工具调用等功能，对中文理解和生成有较好的优化。
+
+#### 环境变量配置
+
+```bash
+# 腾讯混元环境变量
+HUNYUAN_API_KEY=your_api_key
+HUNYUAN_BASE_URL=https://api.hunyuan.cloud.tencent.com/v1
+```
+
+#### 代码示例
+
+```php
+use Hyperf\Odin\Model\HunyuanModel;
+use Hyperf\Odin\Logger;
+
+// 创建腾讯混元模型实例
+$model = new HunyuanModel(
+    'hunyuan-standard',  // 模型名称
+    [
+        'api_key' => env('HUNYUAN_API_KEY'),
+        'base_url' => env('HUNYUAN_BASE_URL', 'https://api.hunyuan.cloud.tencent.com/v1'),
+    ],
+    new Logger(),
+);
+
+// 基础对话
+$messages = [
+    new SystemMessage('你是一个专业、友好的AI助手。'),
+    new UserMessage('你好，请介绍一下你自己。'),
+];
+
+$response = $model->chat($messages);
+echo $response->getFirstChoice()->getMessage()->getContent();
+```
+
+#### 支持的模型
+
+腾讯混元提供多个模型版本，适用于不同场景：
+
+- `hunyuan-standard`：标准版本，平衡性能和成本
+- `hunyuan-turbo`：快速版本，适合实时交互场景
+- `hunyuan-pro`：专业版本，提供更高质量的输出
+- `hunyuan-lite`：轻量版本，响应速度更快
+
+#### 功能特性
+
+- ✅ 支持对话生成（chat）
+- ✅ 支持流式响应（streaming）
+- ✅ 支持函数调用（function calling）
+- ✅ 支持工具调用（tool use）
+- ✅ 中文优化
 
 ### ChatGLM
 

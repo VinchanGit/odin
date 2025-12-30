@@ -7,7 +7,7 @@ This project aims to help developers create more intelligent and flexible applic
 
 ## Core Features
 
-- **Multi-Model Support**: Supports various large language models including OpenAI, Azure OpenAI, AWS Bedrock, Doubao, ChatGLM, and more
+- **Multi-Model Support**: Supports various large language models including OpenAI, Azure OpenAI, AWS Bedrock, Doubao, Tencent Hunyuan, ChatGLM, and more
 - **Unified Interface**: Provides consistent API interface, simplifying integration with different LLM providers
 - **Tool Calling**: Supports Function Calling, allowing models to invoke custom tools and functions
 - **MCP Integration**: Based on [dtyq/php-mcp](https://github.com/dtyq/php-mcp) to implement Model Context Protocol support, easily integrating external tools and services

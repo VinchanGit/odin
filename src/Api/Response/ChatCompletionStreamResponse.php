@@ -135,7 +135,7 @@ class ChatCompletionStreamResponse extends AbstractResponse implements Stringabl
         return $this->created;
     }
 
-    public function setCreated(int|string|null $created): self
+    public function setCreated(null|int|string $created): self
     {
         $this->created = (int) $created;
         return $this;

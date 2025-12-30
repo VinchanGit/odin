@@ -13,6 +13,7 @@ use Hyperf\Odin\Model\AwsBedrockModel;
 use Hyperf\Odin\Model\AzureOpenAIModel;
 use Hyperf\Odin\Model\ChatglmModel;
 use Hyperf\Odin\Model\DoubaoModel;
+use Hyperf\Odin\Model\HunyuanModel;
 use Hyperf\Odin\Model\OpenAIModel;
 
 use function Hyperf\Support\env;
@@ -353,6 +354,34 @@ return [
                     'custom_error_mapping_rules' => [],
                 ],
             ],
+            'hunyuan-standard' => [
+                'implementation' => HunyuanModel::class,
+                'model' => 'hunyuan-standard',
+                'config' => [
+                    'api_key' => env('HUNYUAN_API_KEY'),
+                    'base_url' => env('HUNYUAN_BASE_URL', 'https://api.hunyuan.cloud.tencent.com/v1'),
+                ],
+                'model_options' => [
+                    'chat' => true,
+                    'function_call' => true,
+                    'embedding' => false,
+                    'multi_modal' => false,
+                    'vector_size' => 0,
+                ],
+                'api_options' => [
+                    'timeout' => [
+                        'connection' => 5.0,  // 连接超时（秒）
+                        'write' => 10.0,      // 写入超时（秒）
+                        'read' => 300.0,       // 读取超时（秒）
+                        'total' => 350.0,     // 总体超时（秒）
+                        'thinking' => 120.0,  // 思考超时（秒）
+                        'stream_chunk' => 30.0, // 流式块间超时（秒）
+                        'stream_first' => 60.0, // 首个流式块超时（秒）
+                        'stream_total' => 600.0, // 流式总超时（秒，默认10分钟）
+                    ],
+                    'custom_error_mapping_rules' => [],
+                ],
+            ],
             'claude-3.7' => [
                 'implementation' => AwsBedrockModel::class,
                 'model' => env('AWS_CLAUDE_3_7_ENDPOINT'),
@@ -397,6 +426,7 @@ return [
         ],
     ],
     'content_copy_keys' => [
-        'request-id', 'x-b3-trace-id',
+        'request-id',
+        'x-b3-trace-id',
     ],
 ];
