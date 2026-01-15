@@ -22,8 +22,8 @@ use Hyperf\Odin\Message\AssistantMessage;
 use Hyperf\Odin\Message\SystemMessage;
 use Hyperf\Odin\Message\ToolMessage;
 use Hyperf\Odin\Message\UserMessage;
-use Hyperf\Odin\Model\HunyuanModel;
 use Hyperf\Odin\Model\ModelOptions;
+use Hyperf\Odin\Model\OpenAIModel;
 use Hyperf\Odin\Tool\Definition\ToolDefinition;
 use Hyperf\Odin\Tool\Definition\ToolParameters;
 
@@ -34,8 +34,9 @@ ClassLoader::init();
 $container = ApplicationContext::setContainer(new Container((new DefinitionSourceFactory())()));
 
 // 创建腾讯混元模型实例
+// 腾讯混元 API 完全兼容 OpenAI 协议，因此直接使用 OpenAIModel
 // 使用混元标准版模型
-$model = new HunyuanModel(
+$model = new OpenAIModel(
     'hunyuan-standard',
     [
         'api_key' => env('HUNYUAN_API_KEY'),

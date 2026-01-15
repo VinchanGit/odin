@@ -21,7 +21,7 @@ use Hyperf\Odin\Api\Request\ChatCompletionRequest;
 use Hyperf\Odin\Logger;
 use Hyperf\Odin\Message\SystemMessage;
 use Hyperf\Odin\Message\UserMessage;
-use Hyperf\Odin\Model\HunyuanModel;
+use Hyperf\Odin\Model\OpenAIModel;
 
 use function Hyperf\Support\env;
 
@@ -30,7 +30,8 @@ ClassLoader::init();
 $container = ApplicationContext::setContainer(new Container((new DefinitionSourceFactory())()));
 
 // 创建腾讯混元模型实例
-$model = new HunyuanModel(
+// 腾讯混元 API 完全兼容 OpenAI 协议，因此直接使用 OpenAIModel
+$model = new OpenAIModel(
     'hunyuan-standard',
     [
         'api_key' => env('HUNYUAN_API_KEY'),

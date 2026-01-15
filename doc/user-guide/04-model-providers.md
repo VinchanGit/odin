@@ -13,7 +13,7 @@ Odin 框架支持多种大型语言模型提供商，您可以根据项目需求
 | AWS Bedrock        | `AwsBedrockModel`    | Amazon AWS Bedrock service                  |
 | Doubao AI          | `DoubaoModel`        | ByteDance's large language model service    |
 | DeepSeek           | `DoubaoModel`        | DeepSeek model via Doubao API               |
-| Tencent Hunyuan    | `HunyuanModel`       | Tencent Cloud Hunyuan LLM service           |
+| Tencent Hunyuan    | `OpenAIModel`        | Tencent Hunyuan LLM (OpenAI-compatible)     |
 | ChatGLM            | `ChatglmModel`       | Bilingual dialogue model by Tsinghua        |
 | RWKV               | `RWKVModel`          | Open-source RNN-based LLM                   |
 | Ollama             | `OllamaModel`        | Local open-source model runtime             |

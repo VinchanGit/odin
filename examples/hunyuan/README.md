@@ -2,6 +2,8 @@
 
 本目录包含腾讯混元大语言模型的使用示例。
 
+> **注意**：腾讯混元 API 完全兼容 OpenAI 协议，所有示例都使用 `OpenAIModel` 类，只需配置不同的 `base_url` 即可。
+
 ## 前置条件
 
 1. **获取 API 密钥**
@@ -14,6 +16,24 @@
    cp .env.example .env
    # 编辑 .env 文件，填入您的 API 密钥
    ```
+
+## 关于 OpenAI 兼容性
+
+腾讯混元模型采用 OpenAI 兼容的 API 协议，因此可以直接使用 `OpenAIModel` 类，无需单独的 `HunyuanModel` 类。
+
+**使用方法：**
+```php
+use Hyperf\Odin\Model\OpenAIModel;
+
+$model = new OpenAIModel(
+    'hunyuan-standard',
+    [
+        'api_key' => env('HUNYUAN_API_KEY'),
+        'base_url' => 'https://api.hunyuan.cloud.tencent.com/v1',
+    ],
+    new Logger()
+);
+```
 
 ## 示例文件说明
 

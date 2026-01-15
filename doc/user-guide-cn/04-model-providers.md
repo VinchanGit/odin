@@ -13,7 +13,7 @@ Odin 框架支持多种大型语言模型提供商，您可以根据项目需求
 | AWS Bedrock  | `AwsBedrockModel`  | 亚马逊 AWS Bedrock 服务，提供多种基础模型接口     |
 | 豆包 AI        | `DoubaoModel`      | 字节跳动旗下的大语言模型服务                     |
 | DeepSeek     | `DoubaoModel`      | 通过豆包 API 访问的 DeepSeek 模型            |
-| 腾讯混元        | `HunyuanModel`     | 腾讯云混元大语言模型服务                       |
+| 腾讯混元        | `OpenAIModel`      | 腾讯云混元大语言模型服务（兼容 OpenAI 协议）         |
 | ChatGLM      | `ChatglmModel`     | 清华大学开发的双语对话语言模型                    |
 | RWKV         | `RWKVModel`        | 开源的 RNN-based 大语言模型                |
 | Ollama       | `OllamaModel`      | 本地运行的开源模型运行时                       |
@@ -196,7 +196,9 @@ $model = new DoubaoModel(
 
 ### 腾讯混元
 
-腾讯混元是腾讯云推出的大语言模型服务，提供兼容 OpenAI API 格式的接口，支持对话生成、工具调用等功能，对中文理解和生成有较好的优化。
+腾讯混元是腾讯云推出的大语言模型服务，**完全兼容 OpenAI API 协议**，支持对话生成、工具调用等功能，对中文理解和生成有较好的优化。
+
+> **注意**：腾讯混元 API 采用 OpenAI 兼容协议，因此直接使用 `OpenAIModel` 类，只需配置不同的 `base_url` 即可。无需单独的 `HunyuanModel` 类。
 
 #### 环境变量配置
 
@@ -209,11 +211,14 @@ HUNYUAN_BASE_URL=https://api.hunyuan.cloud.tencent.com/v1
 #### 代码示例
 
 ```php
-use Hyperf\Odin\Model\HunyuanModel;
+use Hyperf\Odin\Model\OpenAIModel;
 use Hyperf\Odin\Logger;
+use Hyperf\Odin\Message\SystemMessage;
+use Hyperf\Odin\Message\UserMessage;
 
 // 创建腾讯混元模型实例
-$model = new HunyuanModel(
+// 使用 OpenAIModel 类，配置混元的 API 地址即可
+$model = new OpenAIModel(
     'hunyuan-standard',  // 模型名称
     [
         'api_key' => env('HUNYUAN_API_KEY'),
